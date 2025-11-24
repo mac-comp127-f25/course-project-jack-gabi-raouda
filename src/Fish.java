@@ -1,8 +1,14 @@
+import java.awt.Image;
+import java.util.List;
+
 import edu.macalester.graphics.GraphicsObject;
 
 
 public class Fish {
     //height + width range code? maybe a list of sizes to randomly choose from
+    private List<Double> fishSizes = java.util.Arrays.asList(20.0, 30.0, 40.0, 50.0, 60.0);
+    private List<Image> fishImages;
+
     private double centerX;
     private double centerY;
 
