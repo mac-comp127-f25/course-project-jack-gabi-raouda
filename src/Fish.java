@@ -12,11 +12,19 @@ public class Fish {
     private double centerX;
     private double centerY;
 
-    public Fish(double centerX, double centerY, double width, double height) {
+    public Fish(double centerX, double centerY, double width, double height, Image image) {
         this.centerX = centerX;
         this.centerY = centerY;
 
         //code that randomly picks a size from the list and creates the graphic object
+        fishImages = java.util.Arrays.asList(
+            //load fish images here
+        );
+
+    }
+    public GraphicsObject getGraphicObject() {
+        //return the graphic object representing the fish
+        return null;
     }
 
 }
