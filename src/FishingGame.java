@@ -4,6 +4,8 @@ import java.util.List;
 
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsObject;
+import edu.macalester.graphics.Rectangle;
+
 
 public class FishingGame {
     private static final int CANVAS_WIDTH = 600;
@@ -20,7 +22,7 @@ public class FishingGame {
 
     public FishingGame() {
         canvas = new CanvasWindow("Fishing!", CANVAS_WIDTH, CANVAS_HEIGHT);
-        canvas.setBackground(Color.BLUE);
+        drawBackground(); 
 
         // boat = new boat(CANVAS_WIDTH / 2, CANVAS_HEIGHT - 50);
         // canvas.add(boat.getGraphicObject());
@@ -43,6 +45,21 @@ public class FishingGame {
         //code
         
     }
+
+    private void drawBackground() {
+        Rectangle sky = new Rectangle(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
+        sky.setFillColor(new Color(135,206,235));
+        sky.setStroked(false);
+        canvas.add(sky);
+
+        Rectangle water = new Rectangle(0,CANVAS_HEIGHT-150, CANVAS_WIDTH, CANVAS_HEIGHT);
+        sky.setFillColor(new Color(15,120,190));
+        sky.setStroked(false);
+        canvas.add(water);
+    }
+
+
+
 
       /**
      * Resets the canvas by removing everything, redrawing new fish, and resetting the paddle and ball to default position.
