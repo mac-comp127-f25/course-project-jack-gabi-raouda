@@ -40,8 +40,7 @@ public class FishingGame {
      * Runs the game.
      */
     public void run() {
-        resetGame();
-        
+        resetGame(); 
     }
 
       /**
