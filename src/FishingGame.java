@@ -40,7 +40,7 @@ public class FishingGame {
      * Runs the game.
      */
     public void run() {
-        //code
+        resetGame();
         
     }
 
@@ -51,11 +51,11 @@ public class FishingGame {
         // canvas.removeAll();
         // generateAllFish();
         // canvas.add(boat.getGraphicObject());
-        // canvas.draw();
+        canvas.draw();
     }
 
     /**
-     * Creates the fishingLine object in the center of the canvas.
+     * Creates the fishingLine object attached to the boat.
      */   
     private void createFishingLine() {
         //make fishing line ? maybe this can be called in the boat class instead
