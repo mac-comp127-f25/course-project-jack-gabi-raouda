@@ -44,8 +44,8 @@ public class FishingGame {
         
     }
 
-      /**
-     * Resets the canvas by removing everything, redrawing new fish, and resetting the paddle and ball to default position.
+    /**
+     * Resets the canvas by removing everything, redrawing new fish, and resetting the boat to default position
      */
     public void resetGame() {
         // canvas.removeAll();
