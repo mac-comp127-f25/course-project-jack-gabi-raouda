@@ -45,6 +45,8 @@ public class FishingGame {
         resetGame(); 
     }
 
+    /**
+     * Resets the canvas by removing everything, redrawing new fish, and resetting the boat to default position
     private void drawBackground() {
         Rectangle sky = new Rectangle(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
         sky.setFillColor(new Color(135,206,235));
