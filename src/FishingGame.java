@@ -46,6 +46,7 @@ public class FishingGame {
     }
 
     /**
+<<<<<<< Updated upstream
      * Resets the canvas by removing everything, redrawing new fish, and resetting the boat to default position
     private void drawBackground() {
         Rectangle sky = new Rectangle(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
@@ -63,6 +64,8 @@ public class FishingGame {
 
 
       /**
+=======
+>>>>>>> Stashed changes
      * Resets the canvas by removing everything, redrawing new fish, and resetting the paddle and ball to default position.
      */
     public void resetGame() {
