@@ -95,7 +95,6 @@ public class FishingGame {
 
     }
 
-
       /**
      * Resets the canvas by removing everything, redrawing new fish, and resetting the paddle and ball to default position.
      */
