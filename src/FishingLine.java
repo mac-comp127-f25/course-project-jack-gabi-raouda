@@ -10,15 +10,16 @@ public class FishingLine {
     private boolean goingUp = false;
 
     private static final double LineWidth = 3;
-    private static final double MaxLength = 350;
+    private static final double MaxLength = 450;
     private static final double Speed = 3;
 
     public FishingLine(CanvasWindow canvas, double startX, double startY) {
         this.startX = startX;
         this.startY = startY;
-
         line = new Rectangle(startX, startY, LineWidth, 0);
         line.setFillColor(java.awt.Color.BLACK);
-        canvas.add(line);
+        canvas.add(line); 
     }
+
+    public void drop() {}
 }
