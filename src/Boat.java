@@ -10,7 +10,7 @@ import edu.macalester.graphics.events.KeyboardEventHandler;
 public class Boat {
     
 
-    public Boat(params) {
-        //code to create the boat graphic object at the given position
-    }
+    // public Boat(params) {
+    //     //code to create the boat graphic object at the given position
+    // }
 }
