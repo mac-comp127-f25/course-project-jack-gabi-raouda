@@ -18,6 +18,7 @@ public class Fish {
 
         //code that randomly picks a size from the list and creates the graphic object
         fishImages = java.util.Arrays.asList(
+
             //load fish images here
         );
 

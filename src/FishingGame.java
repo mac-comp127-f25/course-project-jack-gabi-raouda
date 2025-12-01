@@ -15,6 +15,7 @@ public class FishingGame {
     private Boat boat;
     private List<Fish> fish;
     private boolean lineMoving = false;
+    private List<Image> fishImages;
     
 
     public CanvasWindow canvas;
@@ -22,8 +23,7 @@ public class FishingGame {
 
     public FishingGame() {
         canvas = new CanvasWindow("Fishing!", CANVAS_WIDTH, CANVAS_HEIGHT);
-        drawBackground(); 
-
+        drawBackground();
         // boat = new boat(CANVAS_WIDTH / 2, CANVAS_HEIGHT - 50);
         // canvas.add(boat.getGraphicObject());
         
@@ -87,6 +87,8 @@ public class FishingGame {
      * Generates the fish list and adds them to the canvas.
      */
     public void generateAllFish() {
+
+        generateAllFish();
         // fishes = Fish.createBricks();
         // for (Fish fish : fishes) {
         //     canvas.add(fish.getGraphicObject());

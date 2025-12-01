@@ -18,8 +18,30 @@ public class FishingLine {
         this.startY = startY;
         line = new Rectangle(startX, startY, LineWidth, 0);
         line.setFillColor(java.awt.Color.BLACK);
-        canvas.add(line); 
+        canvas.add(line);
+    }
+    public void dropLine() { 
+        dropping = true; 
+        goingUp = false; 
     }
 
-    public void drop() {}
+    public void goingUp() { 
+    goingUp = true;
+    dropping = false;
+}
+ public void update() {
+        if (dropping) {
+            if (line.getHeight() < MaxLength) {
+                line.setHeight(line.getHeight() + Speed);
+            } else {
+                dropping = false;
+            }
+        } else if (goingUp) {
+            if (line.getHeight() > 0) {
+                line.setHeight(line.getHeight() - Speed);
+            } else {
+                goingUp = false;
+            }
+        }
+    }
 }
