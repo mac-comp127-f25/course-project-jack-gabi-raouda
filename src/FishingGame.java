@@ -93,6 +93,13 @@ public class FishingGame {
         cloud3.setMaxWidth(150);
         canvas.add(cloud3);
 
+        fishImages  = new ArrayList<>();
+        fishImages.add(new Image("res/fish1.png"));
+        fishImages.add(new Image("res/fish2.png"));
+        fishImages.add(new Image("res/fish3.png"));
+        fishImages.add(new Image("res/fish4.png"));
+        fishImages.add(new Image("res/fish5.png"));
+
     }
 
       /**
