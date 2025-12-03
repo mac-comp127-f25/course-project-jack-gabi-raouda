@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.List;
 import edu.macalester.graphics.Image;
 import edu.macalester.graphics.GraphicsObject;
@@ -22,13 +23,15 @@ public class Fish {
         this.centerX = centerX;
         this.centerY = centerY;
 
-        //code that randomly picks an image and a size from the list and creates the graphic object
+        // code that randomly picks an image and a size from the list and creates the graphic object
         fishImages = java.util.Arrays.asList(fish1, fish2, fish3, fish4, fish5);
         image = fishImages.get((int)(Math.random() * fishImages.size()));
         image.setCenter(centerX, centerY);
         size = fishSizes.get((int)(Math.random() * fishSizes.size()));
         image.setMaxHeight(size);
         image.setMaxWidth(size);
+
+
 
     }
  
@@ -37,5 +40,15 @@ public class Fish {
         //return the graphic object representing the fish
         return null;
     }
+
+    // public static List<Fish> generateFish(){
+    //     List <Fish> fishList = new ArrayList<>();
+    //     fishList.add(new Fish(100, 600, 30, null));
+    //     return fishList;
+
+        
+
+
+    // }
 
 }
