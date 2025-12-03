@@ -1,7 +1,6 @@
-import java.util.ArrayList;
+
 import java.util.List;
 import edu.macalester.graphics.Image;
-
 import edu.macalester.graphics.GraphicsObject;
 
 

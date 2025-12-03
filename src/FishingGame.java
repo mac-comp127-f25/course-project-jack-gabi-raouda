@@ -8,6 +8,7 @@ import edu.macalester.graphics.Ellipse;
 import edu.macalester.graphics.GraphicsObject;
 import edu.macalester.graphics.Image;
 import edu.macalester.graphics.Rectangle;
+import java.util.ArrayList;
 
 
 public class FishingGame {
