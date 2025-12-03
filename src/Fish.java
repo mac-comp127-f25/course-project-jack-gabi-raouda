@@ -1,6 +1,6 @@
-import java.awt.Image;
-import java.util.List;
 
+import java.util.List;
+import edu.macalester.graphics.Image;
 import edu.macalester.graphics.GraphicsObject;
 
 
