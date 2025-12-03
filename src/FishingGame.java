@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -18,7 +19,7 @@ public class FishingGame {
     private Boat boat;
     private List<Fish> fish;
     private boolean lineMoving = false;
-    private List<Image> fishImages;
+    // private List<Image> fishImages;
     
 
     public CanvasWindow canvas;
@@ -27,8 +28,14 @@ public class FishingGame {
     public FishingGame() {
         canvas = new CanvasWindow("Fishing!", CANVAS_WIDTH, CANVAS_HEIGHT);
         drawBackground();
+<<<<<<< HEAD
         boat = new Boat(CANVAS_WIDTH / 2 , CANVAS_HEIGHT - 50);
         canvas.add(boat.getGraphicsObject());
+=======
+
+        boat = new Boat(CANVAS_WIDTH / 2, CANVAS_HEIGHT - 50);
+        canvas.add(boat.getGraphicObject());
+>>>>>>> 8570badf822accc6c9f302be29cad6ec118e5a62
         
         //code that handles keyboard input to move the boat left and right
     }
@@ -94,13 +101,6 @@ public class FishingGame {
         cloud3.setMaxWidth(150);
         canvas.add(cloud3);
 
-        fishImages  = new ArrayList<>();
-        fishImages.add(new Image("res/fish1.png"));
-        fishImages.add(new Image("res/fish2.png"));
-        fishImages.add(new Image("res/fish3.png"));
-        fishImages.add(new Image("res/fish4.png"));
-        fishImages.add(new Image("res/fish5.png"));
-
     }
 
       /**
@@ -124,13 +124,14 @@ public class FishingGame {
     /**
      * Generates the fish list and adds them to the canvas.
      */
-    public void generateAllFish() {
+    // public void generateAllFish() {
 
-        // fishes = Fish.createBricks();
-        // for (Fish fish : fishes) {
-        //     canvas.add(fish.getGraphicObject());
-        // }
-    }
+    //     generateAllFish();
+    //     // fishes = Fish.createFish();
+    //     // for (Fish fish : fishes) {
+    //     //     canvas.add(fish.getGraphicObject());
+    //     // }
+    // }
 
     /**
      * Checks if the line has hit any fish and pulls them up to the water surface if so.
