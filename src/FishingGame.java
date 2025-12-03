@@ -27,8 +27,8 @@ public class FishingGame {
     public FishingGame() {
         canvas = new CanvasWindow("Fishing!", CANVAS_WIDTH, CANVAS_HEIGHT);
         drawBackground();
-        // boat = new boat(CANVAS_WIDTH / 2, CANVAS_HEIGHT - 50);
-        // canvas.add(boat.getGraphicObject());
+        boat = new Boat(CANVAS_WIDTH / 2 , CANVAS_HEIGHT - 50);
+        canvas.add(boat.getGraphicsObject());
         
         //code that handles keyboard input to move the boat left and right
     }
