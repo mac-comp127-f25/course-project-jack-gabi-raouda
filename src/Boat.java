@@ -56,8 +56,5 @@ public class Boat {
         centerX += dx;
     }
 
-    public double getCenterX() { return centerX; }
-    public double getCenterY() { return centerY; }
-
     }
 
