@@ -15,11 +15,11 @@ public class FishingGame {
     private static final int CANVAS_WIDTH = 600;
     private static final int CANVAS_HEIGHT = 800;
     private static final double WATER_LEVEL = CANVAS_HEIGHT - 150;
-    // private FishingLine fishingLine;
+    private FishingLine fishingLine;
     private Boat boat;
     private List<Fish> fish;
     private boolean lineMoving = false;
-    private List<Image> fishImages;
+    // private List<Image> fishImages;
     
 
     public CanvasWindow canvas;
