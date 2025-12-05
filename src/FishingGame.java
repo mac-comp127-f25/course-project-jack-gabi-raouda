@@ -28,16 +28,38 @@ public class FishingGame {
     public FishingGame() {
         canvas = new CanvasWindow("Fishing!", CANVAS_WIDTH, CANVAS_HEIGHT);
         drawBackground();
-<<<<<<< HEAD
-        boat = new Boat(CANVAS_WIDTH / 2 , CANVAS_HEIGHT - 50);
+        boat = new Boat(CANVAS_WIDTH / 2 , WATER_LEVEL - 570);
         canvas.add(boat.getGraphicsObject());
-=======
-
-        boat = new Boat(CANVAS_WIDTH / 2, CANVAS_HEIGHT - 50);
-        canvas.add(boat.getGraphicObject());
->>>>>>> 8570badf822accc6c9f302be29cad6ec118e5a62
         
         //code that handles keyboard input to move the boat left and right
+        canvas.onMouseMove(event -> {
+            double mouseX = event.getPosition().getX();
+            boat.move(mouseX, CANVAS_WIDTH);
+        });
+
+
+        // Create fishing line starting at the center top of the boat
+        fishingLine = new FishingLine(canvas, boat.getX() + 80, boat.getY() + 40);
+
+        // Animate the line and boat together
+        canvas.animate(() -> {
+
+        // Move line top with boat
+        fishingLine.updatePosition(boat.getX() + 80, boat.getY() + 40);
+
+        // Animate line dropping/going up
+        fishingLine.update();
+    });
+
+    //Drop the line on SPACE key
+    canvas.onKeyDown(event -> {
+        if (event.getKey().toString().equals("SPACE")) {
+            fishingLine.dropLine();
+        }
+    });
+
+
+
     }
 
     /**
