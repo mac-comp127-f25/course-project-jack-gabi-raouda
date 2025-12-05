@@ -23,6 +23,11 @@ public class Boat {
             new Point(20, 80)
         ));
         body.setFillColor(new Color(255, 0, 0));
+<<<<<<< HEAD
+        body.setStrocked(false);
+        boatGroup.add(body);
+        
+=======
         body.setStroked(false);
         boatGroup.add(body); 
 
@@ -44,6 +49,7 @@ public class Boat {
         sail.setStroked(true);
         boatGroup.add(sail);
     }
+>>>>>>> 0c2931f1d6c30f8737bf0d9dac751bed09f36781
 
     
     public void move(double mouseX, int canvasWidth) {
