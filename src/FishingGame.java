@@ -17,7 +17,7 @@ public class FishingGame {
     private static final double WATER_LEVEL = CANVAS_HEIGHT - 150;
     private FishingLine fishingLine;
     private Boat boat;
-    private List<Fish> fish;
+    private List<Fish> fishes;
     private boolean lineMoving = false;
     // private List<Image> fishImages;
     
@@ -130,7 +130,7 @@ public class FishingGame {
      */
     public void resetGame() {
         // canvas.removeAll();
-        // generateAllFish();
+        generateAllFish();
         // canvas.add(boat.getGraphicObject());
         canvas.draw();
     }
@@ -146,14 +146,13 @@ public class FishingGame {
     /**
      * Generates the fish list and adds them to the canvas.
      */
-    // public void generateAllFish() {
+    public void generateAllFish() {
+        fishes = Fish.generateFish();
 
-    //     generateAllFish();
-    //     // fishes = Fish.createFish();
-    //     // for (Fish fish : fishes) {
-    //     //     canvas.add(fish.getGraphicObject());
-    //     // }
-    // }
+        for (Fish f : fishes) {
+            f.addToCanvas(canvas);
+        }
+    }
 
     /**
      * Checks if the line has hit any fish and pulls them up to the water surface if so.
