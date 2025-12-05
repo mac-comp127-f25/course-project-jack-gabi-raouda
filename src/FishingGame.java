@@ -39,17 +39,14 @@ public class FishingGame {
 
 
         // Create fishing line starting at the center top of the boat
-        fishingLine = new FishingLine(canvas, boat.getX() + 80, boat.getY() + 40);
+        fishingLine = new FishingLine(canvas, boat.getX() + boat.getGraphicsObject().getWidth() / 2, boat.getY() + 40);
 
         // Animate the line and boat together
         canvas.animate(() -> {
+            fishingLine.updatePosition(boat.getX() + boat.getGraphicsObject().getWidth() / 2,boat.getY() + 80);
+            fishingLine.update();
+        });
 
-        // Move line top with boat
-        fishingLine.updatePosition(boat.getX() + 80, boat.getY() + 40);
-
-        // Animate line dropping/going up
-        fishingLine.update();
-    });
 
     //Drop the line on SPACE key
     canvas.onKeyDown(event -> {

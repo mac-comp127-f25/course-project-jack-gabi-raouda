@@ -25,11 +25,10 @@ public class FishingLine {
     }
 
     // Attach line top to boat whenver it moves
-     public void updatePosition(double boatX, double boatY) {
+    public void updatePosition(double boatX, double boatBottomY) {
         this.x = boatX;
-        this.y = boatY;
-
-        redrawLine();
+        this.y = boatBottomY;
+        line.setPosition(x, y);
     }
 
     public void dropLine() { 
@@ -62,10 +61,8 @@ public class FishingLine {
 
     // remove old rectangle and draw new one with updated length
     private void redrawLine() {
-        canvas.remove(line);
-        line = new Rectangle(x, y, LINE_WIDTH, length);
-        line.setFillColor(java.awt.Color.BLACK);
-        canvas.add(line);
+        line.setSize(LINE_WIDTH, length);
+        line.setPosition(x, y);
     }
 
     public Rectangle getShape() {
