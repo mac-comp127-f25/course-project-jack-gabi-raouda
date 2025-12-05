@@ -7,7 +7,7 @@ import edu.macalester.graphics.GraphicsObject;
 
 
 public class Fish {
-    private static List<Double> fishSizes = java.util.Arrays.asList(20.0, 30.0, 40.0, 50.0, 60.0);
+    private static List<Double> fishSizes = java.util.Arrays.asList(  70.0, 90.0, 110.0, 130.0, 150.0 );
 
     private double centerX;
     private double centerY;
@@ -37,23 +37,17 @@ public class Fish {
         return fishImages.get((int)(Math.random() * fishImages.size()));
     }
 
-    // public GraphicsObject getGraphicObject() {
-    //     return ;
-    // }
-
     public Image getImage(){
         return image;
     }
 
-
-
     public static List<Fish> generateFish(){
         List <Fish> fishList = new ArrayList<>();
+        fishList.add(new Fish(50, 500, pickRandomSize(), pickRandomImage()));
         fishList.add(new Fish(100, 500, pickRandomSize(), pickRandomImage()));
+        fishList.add(new Fish(150, 500, pickRandomSize(), pickRandomImage()));
         fishList.add(new Fish(200, 500, pickRandomSize(), pickRandomImage()));
         fishList.add(new Fish(300, 500, pickRandomSize(), pickRandomImage()));
-        fishList.add(new Fish(400, 500, pickRandomSize(), pickRandomImage()));
-        fishList.add(new Fish(500, 550, pickRandomSize(), pickRandomImage()));
         return fishList;
     }
 

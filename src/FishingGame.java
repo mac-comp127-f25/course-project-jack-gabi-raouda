@@ -19,7 +19,6 @@ public class FishingGame {
     private Boat boat;
     private List<Fish> fishes;
     private boolean lineMoving = false;
-    // private List<Image> fishImages;
     
 
     public CanvasWindow canvas;
