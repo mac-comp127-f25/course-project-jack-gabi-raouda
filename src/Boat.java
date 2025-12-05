@@ -24,6 +24,7 @@ public class Boat {
         body.setFillColor(new Color(255, 0, 0));
         body.setStrocked(false);
         boatGroup.add(body);
+        
 
     
 
