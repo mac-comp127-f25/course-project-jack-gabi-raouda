@@ -23,11 +23,10 @@ public class Fish {
     public Fish(double centerX, double centerY, double size, Image image) {
         this.centerX = centerX;
         this.centerY = centerY;
-
-        image.setCenter(centerX, centerY);
-        image.setMaxHeight(size);
-        image.setMaxWidth(size);
         this.image = image;
+        this.image.setCenter(centerX, centerY);
+        this.image.setMaxHeight(size);
+        this.image.setMaxWidth(size);
     }
  
     public static double pickRandomSize() {
