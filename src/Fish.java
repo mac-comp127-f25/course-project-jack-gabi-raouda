@@ -27,6 +27,7 @@ public class Fish {
         this.image.setCenter(centerX, centerY);
         this.image.setMaxHeight(size);
         this.image.setMaxWidth(size);
+        System.out.println("Created fish at (" + centerX + ", " + centerY + ") with size " + size);
     }
  
     public static double pickRandomSize() {
