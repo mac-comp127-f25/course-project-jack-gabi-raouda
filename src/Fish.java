@@ -12,6 +12,10 @@ public class Fish {
     private double centerX;
     private double centerY;
     private Image image;
+    private double dx;
+    private double dy;
+    private double speed = 1.5;
+
 
     public static List<String> fishImages = List.of(
         "fish_images/fish1.png",
@@ -62,6 +66,21 @@ public class Fish {
     public void addToCanvas(CanvasWindow canvas) {
         canvas.add(image);
         System.out.println("Adding fish to canvas: " + image.getCenter());
+    }
+    public void moveFish(double CANVAS_WIDTH, double WATER_LEVEL){
+        centerX += dx;
+        centerY += dy;
+        image.setCenter(centerX,centerX);
+        if (centerX < 0 || centerX > CANVAS_WIDTH) {
+            dx *= -1;
+        }
+        if (centerY < 0 || centerY > WATER_LEVEL) {
+            dy *= -1;
+        }
+        if (Math.random() < 0.01) {
+            dx = (Math.random() * 2 - 1) * speed;
+            dy = (Math.random() * 2 - 1) * speed;
+        }
     }
 
 }

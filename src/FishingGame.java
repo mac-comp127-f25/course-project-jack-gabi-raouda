@@ -44,6 +44,9 @@ public class FishingGame {
         canvas.animate(() -> {
             fishingLine.updatePosition(boat.getX() + boat.getGraphicsObject().getWidth() / 2,boat.getY() + 80);
             fishingLine.update();
+            for(Fish f:fishes){
+                f.moveFish(CANVAS_WIDTH,WATER_LEVEL);
+            }
         });
 
 
