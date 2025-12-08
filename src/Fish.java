@@ -12,6 +12,10 @@ public class Fish {
     private double centerX;
     private double centerY;
     private Image image;
+    private double dx;
+    private double dy;
+    private double speed = 1.5;
+
 
     public static Image fish1 = new Image("fish_images/fish1.png");
     public static Image fish2 = new Image("fish_images/fish2.png");
@@ -27,6 +31,8 @@ public class Fish {
         this.image.setCenter(centerX, centerY);
         this.image.setMaxHeight(size);
         this.image.setMaxWidth(size);
+        this.dx = (Math.random() * 2 - 1) * speed;
+        this.dy = (Math.random() * 2 - 1) * speed;
         System.out.println("Created fish at (" + centerX + ", " + centerY + ") with size " + size);
     }
  
@@ -54,6 +60,21 @@ public class Fish {
 
     public void addToCanvas(CanvasWindow canvas) {
         canvas.add(image);
+    }
+    public void moveFish(double CANVAS_WIDTH, double WATER_LEVEL){
+        centerX += dx;
+        centerY += dy;
+        image.setCenter(centerX,centerX);
+        if (centerX < 0 || centerX > CANVAS_WIDTH) {
+            dx *= -1;
+        }
+        if (centerY < 0 || centerY > WATER_LEVEL) {
+            dy *= -1;
+        }
+        if (Math.random() < 0.01) {
+            dx = (Math.random() * 2 - 1) * speed;
+            dy = (Math.random() * 2 - 1) * speed;
+        }
     }
 
 }
