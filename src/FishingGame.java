@@ -47,12 +47,12 @@ public class FishingGame {
         });
 
 
-    //Drop the line on SPACE key
-    canvas.onKeyDown(event -> {
-        if (event.getKey().toString().equals("SPACE")) {
-            fishingLine.dropLine();
-        }
-    });
+        //Drop the line on SPACE key
+        canvas.onKeyDown(event -> {
+            if (event.getKey().toString().equals("SPACE")) {
+                fishingLine.dropLine();
+            }
+        });
     }
 
     /**
@@ -140,7 +140,6 @@ public class FishingGame {
      * Generates the fish list and adds them to the canvas.
      */
     public void generateAllFish() {
-
         for (Fish f : fishes) {
             f.addToCanvas(canvas);
             System.out.println(f);

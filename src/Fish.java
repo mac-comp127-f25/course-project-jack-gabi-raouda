@@ -7,27 +7,28 @@ import edu.macalester.graphics.GraphicsObject;
 
 
 public class Fish {
-    private static List<Double> fishSizes = java.util.Arrays.asList(  70.0, 90.0, 110.0, 130.0, 150.0 );
+    private static List<Double> fishSizes = List.of(  70.0, 90.0, 110.0, 130.0, 150.0 );
 
     private double centerX;
     private double centerY;
     private Image image;
 
-    public static Image fish1 = new Image("fish_images/fish1.png");
-    public static Image fish2 = new Image("fish_images/fish2.png");
-    public static Image fish3 = new Image("fish_images/fish3.png");
-    public static Image fish4 = new Image("fish_images/fish4.png");
-    public static Image fish5 = new Image("fish_images/fish5.png");
-    public static List<Image> fishImages = java.util.Arrays.asList(fish1, fish2, fish3, fish4, fish5);
+    public static List<String> fishImages = List.of(
+        "fish_images/fish1.png",
+        "fish_images/fish2.png",
+        "fish_images/fish3.png",
+        "fish_images/fish4.png",
+        "fish_images/fish5.png"
+    );
 
     public Fish(double centerX, double centerY, double size, Image image) {
         this.centerX = centerX;
         this.centerY = centerY;
         this.image = image;
-        this.image.setCenter(centerX, centerY);
         this.image.setMaxHeight(size);
         this.image.setMaxWidth(size);
-        System.out.println("Created fish at (" + centerX + ", " + centerY + ") with size " + size);
+        this.image.setCenter(centerX, centerY);
+        System.out.println("Created fish at (" + image.getCenter() + ") with size " + size);
     }
  
     public static double pickRandomSize() {
@@ -35,7 +36,8 @@ public class Fish {
     }
 
     public static Image pickRandomImage() {
-        return fishImages.get((int)(Math.random() * fishImages.size()));
+        String randomPath = fishImages.get((int)(Math.random() * fishImages.size()));
+        return new Image(randomPath);
     }
 
     public Image getImage(){
@@ -43,17 +45,23 @@ public class Fish {
     }
 
     public static List<Fish> generateFish(){
-        List <Fish> fishList = new ArrayList<>();
-        fishList.add(new Fish(50, 500, pickRandomSize(), pickRandomImage()));
-        fishList.add(new Fish(100, 500, pickRandomSize(), pickRandomImage()));
-        fishList.add(new Fish(150, 500, pickRandomSize(), pickRandomImage()));
-        fishList.add(new Fish(200, 500, pickRandomSize(), pickRandomImage()));
-        fishList.add(new Fish(300, 500, pickRandomSize(), pickRandomImage()));
+        List<Fish> fishList = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            double x = 50 + i * 100;
+            double y = 400 + Math.random() * 200;
+            fishList.add(new Fish(x, y, pickRandomSize(), pickRandomImage()));
+        }
+        // fishList.add(new Fish(50, 500, pickRandomSize(), pickRandomImage()));
+        // fishList.add(new Fish(100, 500, pickRandomSize(), pickRandomImage()));
+        // fishList.add(new Fish(150, 500, pickRandomSize(), pickRandomImage()));
+        // fishList.add(new Fish(200, 500, pickRandomSize(), pickRandomImage()));
+        // fishList.add(new Fish(300, 500, pickRandomSize(), pickRandomImage()));
         return fishList;
     }
 
     public void addToCanvas(CanvasWindow canvas) {
         canvas.add(image);
+        System.out.println("Adding fish to canvas: " + image.getCenter());
     }
 
 }
