@@ -15,6 +15,7 @@ public class Fish {
     private double dx;
     private double dy;
     private double speed = 1.5;
+    private boolean caught = false;
 
 
     public static List<String> fishImages = List.of(
@@ -48,6 +49,18 @@ public class Fish {
 
     public Image getImage(){
         return image;
+    }
+
+    public boolean isCaught() {
+        return caught;
+    }
+
+    public void catchFish() {
+        caught = true;
+    }
+
+    public void followLine(double x, double y) {
+        image.setCenter(x, y);
     }
 
     public static List<Fish> generateFish() {

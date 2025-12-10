@@ -36,7 +36,7 @@ public class FishingLine {
         goingUp = false; 
     }
 
-    public void goingUp() { 
+    public void pullUp(){ 
     goingUp = true;
     dropping = false;
 }
@@ -68,4 +68,18 @@ public class FishingLine {
     public Rectangle getShape() {
         return line;
     }
+
+    public double getHookX() {
+    return x + LINE_WIDTH / 2;
+
+    }
+
+    public double getHookY() {
+        return y + length;
+    }
+
+    public boolean isGoingUp() {
+        return goingUp;
+    }
+
     }

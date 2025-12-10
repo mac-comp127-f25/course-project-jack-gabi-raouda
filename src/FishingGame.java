@@ -45,9 +45,21 @@ public class FishingGame {
         canvas.animate(() -> {
             fishingLine.updatePosition(boat.getX() + boat.getGraphicsObject().getWidth() / 2,boat.getY() + 80);
             fishingLine.update();
-            for(Fish f:fishes){
-                f.moveFish(CANVAS_WIDTH,FISH_Y_BOUND);
+
+        checkIfFishHit();
+        removeFishAtSurface();
+
+        for (Fish f : fishes) {
+            if (!f.isCaught()) {
+                f.moveFish(CANVAS_WIDTH, FISH_Y_BOUND);
+            } else {
+                f.followLine(
+                    fishingLine.getHookX(),
+                    fishingLine.getHookY()
+                );
             }
+        }
+        
         });
 
 
@@ -146,14 +158,40 @@ public class FishingGame {
      * Checks if the line has hit any fish and pulls them up to the water surface if so.
      */
     private void checkIfFishHit() {
-        //code
+        for (Fish f : fishes) {
+            if (!f.isCaught()) {
+                double fishX = f.getImage().getCenter().getX();
+                double fishY = f.getImage().getCenter().getY();
+
+                double hookX = fishingLine.getHookX();
+                double hookY = fishingLine.getHookY();
+
+                double distance = Math.hypot(fishX - hookX, fishY - hookY);
+
+                if (distance < 30) {
+                    f.catchFish();
+                    fishingLine.pullUp();
+                    break;
+            }
+        }
+    }
     }
     
     /**
      * Helper method to remove the fish from the canvas when it reaches the surface of the water.
      */
     private void removeFishAtSurface(){
-        //code
+            List<Fish> toRemove = new ArrayList<>();
+
+    for (Fish f : fishes) {
+        if (f.isCaught()) {
+            if (f.getImage().getCenter().getY() <= WATER_LEVEL) {
+                canvas.remove(f.getImage());
+                toRemove.add(f);
+            }
+        }
+    }
+    fishes.removeAll(toRemove);
     }
 
 }
