@@ -38,31 +38,53 @@ public class Fish {
         System.out.println("Created fish at (" + image.getCenter() + ") with size " + size);
     }
  
+    /**
+     * Picks random size from the fishSizes list.
+     */  
     public static double pickRandomSize() {
         return fishSizes.get((int)(Math.random() * fishSizes.size()));
     }
 
+    /**
+     * Picks random image path from the fishImages list.
+     */
     public static Image pickRandomImage() {
         String randomPath = fishImages.get((int)(Math.random() * fishImages.size()));
         return new Image(randomPath);
     }
 
+     /**
+     * Returns the image of the fish.
+     */  
     public Image getImage(){
         return image;
     }
 
+    /**
+     * Returns boolean of whether the fish is caught.
+     */  
     public boolean isCaught() {
         return caught;
     }
 
+    /**
+     * Changes the state of the fish to caught, changing the caught boolean to true.
+     */  
     public void catchFish() {
         caught = true;
     }
 
+    /**
+     * Sets the position of the fish to the x and y coordinate of the bottom of the fishing line.
+     */  
     public void followLine(double x, double y) {
         image.setCenter(x, y);
     }
 
+
+    /**
+     * Creates a list of fish with random sizes and images at random positions within the bounds of the water.
+     */
     public static List<Fish> generateFish() {
     List<Fish> fishList = new ArrayList<>();
 
@@ -79,15 +101,19 @@ public class Fish {
 
         fishList.add(new Fish(x, y, size, image));
     }
-
-    return fishList;
-}
-
-    public void addToCanvas(CanvasWindow canvas) {
-        canvas.add(image);
-        System.out.println("Adding fish to canvas: " + image.getCenter());
+        return fishList;
     }
 
+    /**
+     * Adds the fish image to the canvas.
+     */  
+    public void addToCanvas(CanvasWindow canvas) {
+        canvas.add(image);
+    }
+
+    /**
+     * Moves the fish randomly up, down, left, and right within the water bounds.
+     */
     public void moveFish(double CANVAS_WIDTH, double FISH_Y_BOUND){
         centerX += dx;
         centerY += dy;

@@ -13,7 +13,7 @@ public class FishingLine {
 
     private static final double LINE_WIDTH = 3;
     private static final double MAX_LENGTH = 450;
-    private static final double SPEED = 3;
+    private static final double SPEED = 4;
 
     public FishingLine(CanvasWindow canvas, double startX, double startY) {
         this.canvas = canvas;

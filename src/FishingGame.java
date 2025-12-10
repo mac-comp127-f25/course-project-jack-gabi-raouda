@@ -175,7 +175,7 @@ public class FishingGame {
 
             if (distance < 30) {
                 f.catchFish();
-                caughtFish = f;       // store the ONE active fish
+                caughtFish = f;
                 fishingLine.pullUp();
                 break;
             }
@@ -184,7 +184,7 @@ public class FishingGame {
     }
     
     /**
-     * Helper method to remove the fish from the canvas when it reaches the surface of the water.
+     * Removes the fish from the canvas when it reaches the surface of the water.
      */
     private void removeFishAtSurface(){
         List<Fish> toRemove = new ArrayList<>();
