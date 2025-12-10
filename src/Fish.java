@@ -22,7 +22,9 @@ public class Fish {
         "fish_images/fish2.png",
         "fish_images/fish3.png",
         "fish_images/fish4.png",
-        "fish_images/fish5.png"
+        "fish_images/fish5.png",
+        "fish_images/fish6.png", 
+        "fish_images/fish7.png"
     );
 
     public Fish(double centerX, double centerY, double size, Image image) {
@@ -55,7 +57,7 @@ public class Fish {
     final double WATER_SURFACE_Y = 200;      
     final double WATER_BOTTOM_Y = 800;        
 
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 15; i++) {
         double size = pickRandomSize();
         Image image = pickRandomImage();
 
@@ -93,8 +95,4 @@ public class Fish {
             dy = (Math.random() * 2 - 1) * speed;
         }
     }
-
-    
-    
-
 }
