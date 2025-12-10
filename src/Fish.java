@@ -48,39 +48,53 @@ public class Fish {
         return image;
     }
 
-    public static List<Fish> generateFish(){
-        List<Fish> fishList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            double x = 50 + i * 100;
-            double y = 400 + Math.random() * 200;
-            fishList.add(new Fish(x, y, pickRandomSize(), pickRandomImage()));
-        }
-        // fishList.add(new Fish(50, 500, pickRandomSize(), pickRandomImage()));
-        // fishList.add(new Fish(100, 500, pickRandomSize(), pickRandomImage()));
-        // fishList.add(new Fish(150, 500, pickRandomSize(), pickRandomImage()));
-        // fishList.add(new Fish(200, 500, pickRandomSize(), pickRandomImage()));
-        // fishList.add(new Fish(300, 500, pickRandomSize(), pickRandomImage()));
-        return fishList;
+    public static List<Fish> generateFish() {
+    List<Fish> fishList = new ArrayList<>();
+
+    final double CANVAS_WIDTH = 600;
+    final double WATER_SURFACE_Y = 200;      
+    final double WATER_BOTTOM_Y = 800;        
+
+    for (int i = 0; i < 10; i++) {
+        double size = pickRandomSize();
+        Image image = pickRandomImage();
+
+        double x = Math.random() * (CANVAS_WIDTH - size) + size / 2;
+        double y = WATER_SURFACE_Y + Math.random() * ((WATER_BOTTOM_Y - size) - WATER_SURFACE_Y) + size / 2;
+
+        fishList.add(new Fish(x, y, size, image));
     }
+
+    return fishList;
+}
 
     public void addToCanvas(CanvasWindow canvas) {
         canvas.add(image);
         System.out.println("Adding fish to canvas: " + image.getCenter());
     }
-    public void moveFish(double CANVAS_WIDTH, double WATER_LEVEL){
+
+    public void moveFish(double CANVAS_WIDTH, double FISH_Y_BOUND){
         centerX += dx;
         centerY += dy;
-        image.setCenter(centerX,centerX);
         if (centerX < 0 || centerX > CANVAS_WIDTH) {
             dx *= -1;
         }
-        if (centerY < 0 || centerY > WATER_LEVEL) {
+        if (centerY< FISH_Y_BOUND) {
+            centerY = FISH_Y_BOUND;
             dy *= -1;
         }
+        if (centerY > 800) {  
+        centerY = 800;
+        dy *= -1;
+    }
+        image.setCenter(centerX, centerY);
         if (Math.random() < 0.01) {
             dx = (Math.random() * 2 - 1) * speed;
             dy = (Math.random() * 2 - 1) * speed;
         }
     }
+
+    
+    
 
 }

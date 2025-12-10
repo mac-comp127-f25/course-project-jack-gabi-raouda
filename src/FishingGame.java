@@ -15,6 +15,7 @@ public class FishingGame {
     private static final int CANVAS_WIDTH = 600;
     private static final int CANVAS_HEIGHT = 800;
     private static final double WATER_LEVEL = CANVAS_HEIGHT - 150;
+    private static final double FISH_Y_BOUND = 200;
     private FishingLine fishingLine;
     private Boat boat;
     private List<Fish> fishes = Fish.generateFish();
@@ -45,7 +46,7 @@ public class FishingGame {
             fishingLine.updatePosition(boat.getX() + boat.getGraphicsObject().getWidth() / 2,boat.getY() + 80);
             fishingLine.update();
             for(Fish f:fishes){
-                f.moveFish(CANVAS_WIDTH,WATER_LEVEL);
+                f.moveFish(CANVAS_WIDTH,FISH_Y_BOUND);
             }
         });
 
@@ -127,15 +128,7 @@ public class FishingGame {
     public void resetGame() {
         // canvas.removeAll();
         generateAllFish();
-        // canvas.add(boat.getGraphicObject());
         canvas.draw();
-    }
-
-    /**
-     * Creates the fishingLine object attached to the boat.
-     */   
-    private void createFishingLine() {
-        //make fishing line ? maybe this can be called in the boat class instead
     }
 
 
