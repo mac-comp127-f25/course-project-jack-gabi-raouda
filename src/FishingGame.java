@@ -32,9 +32,11 @@ public class FishingGame {
         boat = new Boat(CANVAS_WIDTH / 2 , WATER_LEVEL - 570);
         canvas.add(boat.getGraphicsObject());
         
-        //code that handles keyboard input to move the boat left and right
+        
         canvas.onMouseMove(event -> {
-            if (!fishingLine.isGoingUp()) {
+            if (fishingLine.dropping()) {
+                return; 
+            } else {
             double mouseX = event.getPosition().getX();
             boat.move(mouseX, CANVAS_WIDTH); 
         }

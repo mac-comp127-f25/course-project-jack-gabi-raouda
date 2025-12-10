@@ -82,4 +82,8 @@ public class FishingLine {
         return goingUp;
     }
 
+    public boolean dropping() {
+        return dropping;
     }
+
+}
