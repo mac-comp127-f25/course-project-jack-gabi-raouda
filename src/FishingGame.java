@@ -19,7 +19,7 @@ public class FishingGame {
     private FishingLine fishingLine;
     private Boat boat;
     private List<Fish> fishes = Fish.generateFish();
-;
+    private Fish caughtFish = null;
     private boolean lineMoving = false;
     
 
@@ -34,8 +34,10 @@ public class FishingGame {
         
         //code that handles keyboard input to move the boat left and right
         canvas.onMouseMove(event -> {
+            if (!fishingLine.isGoingUp()) {
             double mouseX = event.getPosition().getX();
-            boat.move(mouseX, CANVAS_WIDTH);
+            boat.move(mouseX, CANVAS_WIDTH); 
+        }
         });
 
         // Create fishing line starting at the center top of the boat
@@ -50,16 +52,15 @@ public class FishingGame {
         removeFishAtSurface();
 
         for (Fish f : fishes) {
-            if (!f.isCaught()) {
-                f.moveFish(CANVAS_WIDTH, FISH_Y_BOUND);
-            } else {
+            if (f == caughtFish) {
                 f.followLine(
                     fishingLine.getHookX(),
                     fishingLine.getHookY()
                 );
+            } else {
+                f.moveFish(CANVAS_WIDTH, FISH_Y_BOUND);
             }
         }
-        
         });
 
 
@@ -158,20 +159,23 @@ public class FishingGame {
      * Checks if the line has hit any fish and pulls them up to the water surface if so.
      */
     private void checkIfFishHit() {
-        for (Fish f : fishes) {
-            if (!f.isCaught()) {
-                double fishX = f.getImage().getCenter().getX();
-                double fishY = f.getImage().getCenter().getY();
+            if (caughtFish != null) return; 
 
-                double hookX = fishingLine.getHookX();
-                double hookY = fishingLine.getHookY();
+            for (Fish f : fishes) {
+            if (!f.isCaught() && !fishingLine.isGoingUp()) {
+            double fishX = f.getImage().getCenter().getX();
+            double fishY = f.getImage().getCenter().getY();
 
-                double distance = Math.hypot(fishX - hookX, fishY - hookY);
+            double hookX = fishingLine.getHookX();
+            double hookY = fishingLine.getHookY();
 
-                if (distance < 30) {
-                    f.catchFish();
-                    fishingLine.pullUp();
-                    break;
+            double distance = Math.hypot(fishX - hookX, fishY - hookY);
+
+            if (distance < 30) {
+                f.catchFish();
+                caughtFish = f;       // store the ONE active fish
+                fishingLine.pullUp();
+                break;
             }
         }
     }
@@ -191,7 +195,11 @@ public class FishingGame {
             }
         }
     }
+    
     fishes.removeAll(toRemove);
+    if (!toRemove.isEmpty()) {
+    caughtFish = null;  
+        }
     }
 
 }
