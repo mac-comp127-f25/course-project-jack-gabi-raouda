@@ -15,7 +15,7 @@ public class FishingGame {
     private static final int CANVAS_WIDTH = 600;
     private static final int CANVAS_HEIGHT = 800;
     private static final double WATER_LEVEL = CANVAS_HEIGHT - 150;
-    private static final double FISH_Y_BOUND = 200;
+    private static final double FISH_Y_BOUND = 170;
     private FishingLine fishingLine;
     private Boat boat;
     private List<Fish> fishes = Fish.generateFish();
@@ -187,11 +187,11 @@ public class FishingGame {
      * Helper method to remove the fish from the canvas when it reaches the surface of the water.
      */
     private void removeFishAtSurface(){
-            List<Fish> toRemove = new ArrayList<>();
+        List<Fish> toRemove = new ArrayList<>();
 
     for (Fish f : fishes) {
         if (f.isCaught()) {
-            if (f.getImage().getCenter().getY() <= WATER_LEVEL) {
+            if (f.getImage().getCenter().getY() <= FISH_Y_BOUND) {
                 canvas.remove(f.getImage());
                 toRemove.add(f);
             }
