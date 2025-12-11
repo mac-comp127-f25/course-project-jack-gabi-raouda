@@ -97,15 +97,28 @@ public class Fish {
 
     for (int i = 0; i < 15; i++) {
         double size = pickRandomSize();
-        Image image = pickRandomImage();
+        String path = fishImages.get((int)(Math.random() * fishImages.size()));
+        Image image = new Image(path);
 
         double x = Math.random() * (CANVAS_WIDTH - size) + size / 2;
         double y = WATER_SURFACE_Y + Math.random() * ((WATER_BOTTOM_Y - size) - WATER_SURFACE_Y) + size / 2;
 
-        fishList.add(new Fish(x, y, size, image));
+        Fish f = new Fish(x, y, size, image);
+        if (path.contains("fish5")) {
+            f.setDeadly(true);
+            f.setValue(-999);
+        } else if (path.contains("fish1") || path.contains("fish3")) {
+            f.setValue(100);
+        } else if (path.contains("fish4")) {
+            f.setValue(70);
+        } else {
+            f.setValue(40);
+        }
+        fishList.add(f);
     }
         return fishList;
     }
+
 
     /**
      * Adds the fish image to the canvas.
@@ -137,6 +150,16 @@ public class Fish {
             dy = (Math.random() * 2 - 1) * speed;
         }
     }
-    
-    
+    public void setValue(int value) {
+    this.value = value;
+    }
+    public void setDeadly(boolean deadly) {
+        this.deadly = deadly;
+    }
+    public int getValue() {
+    return value;
+    }
+    public boolean isDeadly() {
+    return deadly;
+    }
 }

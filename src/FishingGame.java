@@ -2,12 +2,15 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.w3c.dom.Text;
 
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Ellipse;
 import edu.macalester.graphics.GraphicsObject;
 import edu.macalester.graphics.Image;
 import edu.macalester.graphics.Rectangle;
+import edu.macalester.graphics.ui.Button;
+
 import java.util.ArrayList;
 import edu.macalester.graphics.GraphicsText;
 
@@ -22,9 +25,14 @@ public class FishingGame {
     private List<Fish> fishes = Fish.generateFish();
     private Fish caughtFish = null;
     private boolean lineMoving = false;
-    private int score = 0;
     private final int TOTAL_FISH = 15;
     private GraphicsText scoreLabel;
+    private int score = 0;
+    private boolean gameOver = false;
+    private boolean gameWin = false;
+    private GraphicsText messageText;
+    private Button restartButton;
+    private Button exitButton;
 
 
     
@@ -55,25 +63,25 @@ public class FishingGame {
 
         // Create fishing line starting at the center top of the boat
         fishingLine = new FishingLine(canvas, boat.getX() + boat.getGraphicsObject().getWidth() / 2, boat.getY() + 40);
+        
 
         // Animate the line and boat together
         canvas.animate(() -> {
+            if (gameOver || gameWin) return;
             fishingLine.updatePosition(boat.getX() + boat.getGraphicsObject().getWidth() / 2,boat.getY() + 80);
             fishingLine.update();
-
-        checkIfFishHit();
-        removeFishAtSurface();
-
-        for (Fish f : fishes) {
-            if (f == caughtFish) {
-                f.followLine(
-                    fishingLine.getHookX(),
-                    fishingLine.getHookY()
-                );
-            } else {
-                f.moveFish(CANVAS_WIDTH, FISH_Y_BOUND);
+            checkIfFishHit();
+            removeFishAtSurface();
+            for (Fish f : fishes) {
+                if (f == caughtFish) {
+                    f.followLine(
+                        fishingLine.getHookX(),
+                        fishingLine.getHookY()
+                    );
+                } else {
+                    f.moveFish(CANVAS_WIDTH, FISH_Y_BOUND);
+                }
             }
-        }
         });
 
 
@@ -97,7 +105,7 @@ public class FishingGame {
      * Runs the game.
      */
     public void run() {
-        resetGame(); 
+        generateAllFish();
     }
 
     /**
@@ -147,17 +155,6 @@ public class FishingGame {
         canvas.add(cloud3);
 
     }
-
-      /**
-     * Resets the canvas by removing everything, redrawing new fish, and resetting the paddle and ball to default position.
-     */
-    public void resetGame() {
-        // canvas.removeAll();
-        generateAllFish();
-        canvas.draw();
-    }
-
-
     /**
      * Generates the fish list and adds them to the canvas.
      */
@@ -197,34 +194,95 @@ public class FishingGame {
     /**
      * Removes the fish from the canvas when it reaches the surface of the water.
      */
-    private void removeFishAtSurface(){
+    private void removeFishAtSurface() {
         List<Fish> toRemove = new ArrayList<>();
+        for (Fish f : fishes) {
+            if (f.isCaught()) {
+                if (f.getImage().getCenter().getY() <= FISH_Y_BOUND) {
 
-    for (Fish f : fishes) {
-        if (f.isCaught()) {
-            if (f.getImage().getCenter().getY() <= FISH_Y_BOUND) {
-                canvas.remove(f.getImage());
-                toRemove.add(f);
-                score++;
-                scoreLabel.setText("Score: " + score);
-                checkWin();
+                    if (f.isDeadly()) {
+                        setGameOver();
+                        return;
+                    }
+                    score += f.getValue();
+                    scoreLabel.setText("Score: " + score);
+
+                    canvas.remove(f.getImage());
+                    toRemove.add(f);
+                    checkWin();
+                }
             }
         }
-    }
     
     fishes.removeAll(toRemove);
     if (!toRemove.isEmpty()) {
-    caughtFish = null;  
+        caughtFish = null;  
         }
     }
 
     private void checkWin() {
-        if (score == TOTAL_FISH) {
-            GraphicsText winText = new GraphicsText("YOU WIN! ", 180, 400);
+        boolean allCaught = true;
+        for (Fish f : fishes) {
+            if (!f.isDeadly() && !f.isCaught()) {
+                allCaught = false;
+                break;
+            }
+        }
+        if (allCaught) {
+            gameWin = true;
+
+            GraphicsText winText = new GraphicsText("YOU WIN!", 200, 400);
             winText.setFontSize(40);
             winText.setFillColor(Color.YELLOW);
             canvas.add(winText);
+            showButtons();
         }
-}
+    }
+    private void setGameOver() {
+        gameOver = true;
+
+        messageText = new GraphicsText("GAME OVER!", 200, 400);
+        messageText.setFontSize(40);
+        messageText.setFillColor(Color.RED);
+        canvas.add(messageText);
+
+        showButtons();
+    }
+
+    private void showButtons() {
+        restartButton = new Button("Restart");
+        exitButton = new Button("Exit");
+
+        restartButton.setPosition(200, 450);
+        exitButton.setPosition(330, 450);
+
+        canvas.add(restartButton);
+        canvas.add(exitButton);
+
+        restartButton.onClick(() -> restartGame());
+        exitButton.onClick(() -> System.exit(0));
+    }
+    private void restartGame() {
+        canvas.removeAll();
+
+        score = 0;
+        gameOver = false;
+        gameWin = false;
+        caughtFish = null;
+
+        drawBackground();
+
+        scoreLabel = new GraphicsText("Score: 0", 20, 30);
+        scoreLabel.setFontSize(24);
+        canvas.add(scoreLabel);
+
+        fishes = Fish.generateFish();
+        generateAllFish();
+
+        boat = new Boat(CANVAS_WIDTH / 2 , WATER_LEVEL - 570);
+        canvas.add(boat.getGraphicsObject());
+
+        fishingLine = new FishingLine(canvas, boat.getX(), boat.getY() + 40);
+    }
 
 }
