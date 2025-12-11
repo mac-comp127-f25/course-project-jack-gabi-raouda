@@ -15,6 +15,8 @@ public class Fish {
     private double dy;
     private double speed = 1.5;
     private boolean caught = false;
+    private int value;
+    private boolean deadly;
 
 
     public static List<String> fishImages = List.of(
@@ -59,6 +61,7 @@ public class Fish {
     public Image getImage(){
         return image;
     }
+    
 
     /**
      * Returns boolean of whether the fish is caught.
@@ -134,4 +137,6 @@ public class Fish {
             dy = (Math.random() * 2 - 1) * speed;
         }
     }
+    
+    
 }

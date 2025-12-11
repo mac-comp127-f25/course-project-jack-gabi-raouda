@@ -205,10 +205,8 @@ public class FishingGame {
             if (f.getImage().getCenter().getY() <= FISH_Y_BOUND) {
                 canvas.remove(f.getImage());
                 toRemove.add(f);
-
                 score++;
                 scoreLabel.setText("Score: " + score);
-
                 checkWin();
             }
         }
