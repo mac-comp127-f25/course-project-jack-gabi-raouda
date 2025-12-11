@@ -33,6 +33,7 @@ public class FishingGame {
     private GraphicsText messageText;
     private Button restartButton;
     private Button exitButton;
+    private GraphicsText rulesText;
 
 
     
@@ -47,6 +48,17 @@ public class FishingGame {
         scoreLabel.setFontSize(24);           
         scoreLabel.setFillColor(Color.BLACK);
         canvas.add(scoreLabel);
+        rulesText = new GraphicsText(
+            "Rules:\n" +
+            "Shark: Game Over\n" +
+            "Whale / Octopus: +100\n" +
+            "Tuna: +70\n" +
+            "Other Fish: +40",
+            CANVAS_WIDTH - 170,40
+        );
+        rulesText.setFontSize(14);
+        rulesText.setFillColor(Color.BLACK);
+        canvas.add(rulesText);
 
         boat = new Boat(CANVAS_WIDTH / 2 , WATER_LEVEL - 570);
         canvas.add(boat.getGraphicsObject());
@@ -275,6 +287,17 @@ public class FishingGame {
         scoreLabel = new GraphicsText("Score: 0", 20, 30);
         scoreLabel.setFontSize(24);
         canvas.add(scoreLabel);
+        rulesText = new GraphicsText(
+            "Rules:\n" +
+            "Shark: Game Over\n" +
+            "Whale / Octopus: +100\n" +
+            "Tuna: +70\n" +
+            "Other Fish: +40",
+            CANVAS_WIDTH - 170,40
+        );
+        rulesText.setFontSize(14);
+        rulesText.setFillColor(Color.BLACK);
+        canvas.add(rulesText);
 
         fishes = Fish.generateFish();
         generateAllFish();
