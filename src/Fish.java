@@ -99,8 +99,11 @@ public class Fish {
 
 
     /**
-     * Creates a list of fish with random sizes and images at random positions within the bounds of the water.
+     * Generates a list of fish with random sizes, images,
+     * and starting positions within the water bounds.
+     * Also assigns point values and deadly status based on fish type.
      */
+    
     public static List<Fish> generateFish() {
     List<Fish> fishList = new ArrayList<>();
 
