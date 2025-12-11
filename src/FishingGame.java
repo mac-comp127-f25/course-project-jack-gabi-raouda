@@ -35,9 +35,6 @@ public class FishingGame {
     private Button exitButton;
     private GraphicsText rulesText;
 
-
-    
-
     public CanvasWindow canvas;
     
 
@@ -50,10 +47,10 @@ public class FishingGame {
         canvas.add(scoreLabel);
         rulesText = new GraphicsText(
             "Rules:\n" +
-            "Shark: Game Over\n" +
-            "Whale / Octopus: +100\n" +
-            "Tuna: +70\n" +
-            "Other Fish: +40",
+            "Shark = Game Over\n" +
+            "Whale or Squid = +100\n" +
+            "Tuna = +70\n" +
+            "Other Fish = +40",
             CANVAS_WIDTH - 170,40
         );
         rulesText.setFontSize(14);
@@ -73,11 +70,8 @@ public class FishingGame {
         }
         });
 
-        // Create fishing line starting at the center top of the boat
         fishingLine = new FishingLine(canvas, boat.getX() + boat.getGraphicsObject().getWidth() / 2, boat.getY() + 40);
         
-
-        // Animate the line and boat together
         canvas.animate(() -> {
             if (gameOver || gameWin) return;
             fishingLine.updatePosition(boat.getX() + boat.getGraphicsObject().getWidth() / 2,boat.getY() + 80);
@@ -173,7 +167,6 @@ public class FishingGame {
     public void generateAllFish() {
         for (Fish f : fishes) {
             f.addToCanvas(canvas);
-            System.out.println(f);
         }
     }
 
@@ -225,13 +218,15 @@ public class FishingGame {
                 }
             }
         }
-    
-    fishes.removeAll(toRemove);
-    if (!toRemove.isEmpty()) {
-        caughtFish = null;  
-        }
+        fishes.removeAll(toRemove);
+        if (!toRemove.isEmpty()) {
+            caughtFish = null;  
+            }
     }
 
+    /**
+     * Checks if player won by catching all non-deadly fish (non-sharks).
+     */
     private void checkWin() {
         boolean allCaught = true;
         for (Fish f : fishes) {
@@ -250,6 +245,10 @@ public class FishingGame {
             showButtons();
         }
     }
+
+    /**
+     * Sets gameOver to true, displays GAME OVER message and buttons.
+     */
     private void setGameOver() {
         gameOver = true;
 
@@ -261,6 +260,9 @@ public class FishingGame {
         showButtons();
     }
 
+    /**
+     * Creates and adds Restart and Exit buttons to the canvas.
+     */
     private void showButtons() {
         restartButton = new Button("Restart");
         exitButton = new Button("Exit");
@@ -274,6 +276,10 @@ public class FishingGame {
         restartButton.onClick(() -> restartGame());
         exitButton.onClick(() -> System.exit(0));
     }
+
+    /**
+     * Restarts the game by resetting game variables, and adding points and rules back to the canvas.
+     */
     private void restartGame() {
         canvas.removeAll();
 
@@ -289,10 +295,10 @@ public class FishingGame {
         canvas.add(scoreLabel);
         rulesText = new GraphicsText(
             "Rules:\n" +
-            "Shark: Game Over\n" +
-            "Whale / Octopus: +100\n" +
-            "Tuna: +70\n" +
-            "Other Fish: +40",
+            "Shark = Game Over\n" +
+            "Whale or Squid = +100\n" +
+            "Tuna = +70\n" +
+            "Other Fish = +40",
             CANVAS_WIDTH - 170,40
         );
         rulesText.setFontSize(14);

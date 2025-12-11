@@ -36,8 +36,6 @@ public class Fish {
         this.image.setMaxHeight(size);
         this.image.setMaxWidth(size);
         this.image.setCenter(centerX, centerY);
-        System.out.println("Created fish at (" + image.getCenter() + ") with size " + size);
-
     }
  
     /**

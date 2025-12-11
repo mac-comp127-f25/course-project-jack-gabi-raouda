@@ -24,24 +24,33 @@ public class FishingLine {
         canvas.add(line);
     }
 
-    // Attach line top to boat whenver it moves
+    /**
+     * Updates the position of the fishing line making it always attached to the bottom of the boat.
+     */
     public void updatePosition(double boatX, double boatBottomY) {
         this.x = boatX;
         this.y = boatBottomY;
         line.setPosition(x, y);
     }
 
+    /**
+     * Sets dropping to true and goingUp to false, making the line drop.
+     */
     public void dropLine() { 
         dropping = true; 
         goingUp = false; 
     }
 
+    /**
+     * Sets goingUp to true and dropping to false, making the line go up.
+     */
     public void pullUp(){ 
     goingUp = true;
     dropping = false;
 }
-
-   // animate the line
+    /**
+     * Updates the length of the fishing line based the speed and whether it is dropping or going up.
+     */
     public void update() {
         if (dropping && length < MAX_LENGTH) {
             length += SPEED;
@@ -59,29 +68,45 @@ public class FishingLine {
         redrawLine();
     }
 
-    // remove old rectangle and draw new one with updated length
+    /**
+     * Redraws the fishing line based on its current length.
+     */
     private void redrawLine() {
         line.setSize(LINE_WIDTH, length);
         line.setPosition(x, y);
     }
 
+    /**
+     * Returns the rectangle that is the fishing line.
+     */
     public Rectangle getShape() {
         return line;
     }
 
+    /**
+     * Returns the x coordinate of the hook (bottom center of the fishing line).
+     */
     public double getHookX() {
     return x + LINE_WIDTH / 2;
-
     }
 
+    /**
+     * Returns the y coordinate of the hook (bottom of the fishing line).
+     */
     public double getHookY() {
         return y + length;
     }
 
+    /**
+     * Returns boolean of whether the line is going up.
+     */
     public boolean isGoingUp() {
         return goingUp;
     }
 
+    /**
+     * Returns boolean of whether the line is dropping.
+     */
     public boolean dropping() {
         return dropping;
     }
