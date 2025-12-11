@@ -9,6 +9,7 @@ import edu.macalester.graphics.GraphicsObject;
 import edu.macalester.graphics.Image;
 import edu.macalester.graphics.Rectangle;
 import java.util.ArrayList;
+import edu.macalester.graphics.GraphicsText;
 
 
 public class FishingGame {
@@ -21,6 +22,11 @@ public class FishingGame {
     private List<Fish> fishes = Fish.generateFish();
     private Fish caughtFish = null;
     private boolean lineMoving = false;
+    private int score = 0;
+    private final int TOTAL_FISH = 15;
+    private GraphicsText scoreLabel;
+
+
     
 
     public CanvasWindow canvas;
@@ -29,6 +35,11 @@ public class FishingGame {
     public FishingGame() {
         canvas = new CanvasWindow("Fishing!", CANVAS_WIDTH, CANVAS_HEIGHT);
         drawBackground();
+        scoreLabel = new GraphicsText("Score: 0", 20, 30);
+        scoreLabel.setFontSize(24);           
+        scoreLabel.setFillColor(Color.BLACK);
+        canvas.add(scoreLabel);
+
         boat = new Boat(CANVAS_WIDTH / 2 , WATER_LEVEL - 570);
         canvas.add(boat.getGraphicsObject());
         
@@ -194,6 +205,11 @@ public class FishingGame {
             if (f.getImage().getCenter().getY() <= FISH_Y_BOUND) {
                 canvas.remove(f.getImage());
                 toRemove.add(f);
+
+                score++;
+                scoreLabel.setText("Score: " + score);
+
+                checkWin();
             }
         }
     }
@@ -203,5 +219,14 @@ public class FishingGame {
     caughtFish = null;  
         }
     }
+
+    private void checkWin() {
+        if (score == TOTAL_FISH) {
+            GraphicsText winText = new GraphicsText("YOU WIN! ", 180, 400);
+            winText.setFontSize(40);
+            winText.setFillColor(Color.YELLOW);
+            canvas.add(winText);
+        }
+}
 
 }

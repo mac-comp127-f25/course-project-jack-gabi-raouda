@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.List;
 import edu.macalester.graphics.Image;
@@ -36,6 +35,7 @@ public class Fish {
         this.image.setMaxWidth(size);
         this.image.setCenter(centerX, centerY);
         System.out.println("Created fish at (" + image.getCenter() + ") with size " + size);
+
     }
  
     /**
