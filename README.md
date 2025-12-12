@@ -23,7 +23,7 @@ Image sources:
 
 Known issues:
 
-The points don't affect  the gameplay since the maximum number of points the user can get in one game depends on the random generation of types of fish, but it is still fun to see how high of a score you can get. The game also does not store high scores.
+The points don't affect the gameplay since the maximum number of points the user can get in one game depends on the random generation of types of fish, but it is still fun to see how high of a score you can get. The game also does not store high scores.
 
 There is a glitch where sometimes if the fish swims close to the boat and touches the fishing line, it will get caught automatically. This is not much of a problem since it just gives you free points, but if a shark does it, it can be frustrating since it immediately ends the game. 
 
