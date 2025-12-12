@@ -1,6 +1,16 @@
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Rectangle;
 
+/**
+ * Class implementing the fishing line in the fishing game.
+ * 
+ * @author Raouda Mamane Bello Boubacar 
+ * @author Jack Fang
+ * @author Gabi Palladino
+ *
+ * This class creates a Rectangle to create the fishing line, and manages its up and down movement, 
+ * based on the user pressing the space bar.
+ */
 public class FishingLine {
     private CanvasWindow canvas;
     private Rectangle line;

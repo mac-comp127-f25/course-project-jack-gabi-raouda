@@ -7,18 +7,21 @@ import edu.macalester.graphics.Point;
 import java.util.Arrays;
 
 /**
- * Represents the boat in the fishing game.
- * The boat is made up of multiple graphical components (body, mast, sail)
- * grouped together so it can move as a single object.
+ * Class implementing the boat in the fishing game.
+ * 
+ * @author Raouda Mamane Bello Boubacar 
+ * @author Jack Fang
+ * @author Gabi Palladino
+ *
+ * This class creates a GraphicsGroup to represent the boat, and manages its left and right movement, 
+ * based on mouse movement of the user.
  */
-
 public class Boat {
     private GraphicsGroup boatGroup;
     /**
      * Constructs a Boat at the given (x, y) position.
      * Initializes and adds the body, mast and sail to a GraphicsGroup.
      */
-
     public Boat(double x, double y){
         boatGroup = new GraphicsGroup(x, y);
         Path body = new Path(Arrays.asList(
@@ -47,13 +50,11 @@ public class Boat {
         sail.setStroked(true);
         boatGroup.add(sail);
     }
-
     
      /**
      * Moves the boat horizontally based on the mouse position.
      * Ensures the boat stays within the canvas boundaries.
      */
-
     public void move(double mouseX, int canvasWidth) {
         double newX = mouseX - boatGroup.getWidth() / 2;
 
@@ -69,7 +70,6 @@ public class Boat {
      * Returns the GraphicsObject representing the entire boat.
      * Used to add the boat to the canvas.
      */
-
     public GraphicsObject getGraphicsObject(){
         return boatGroup;
     }
