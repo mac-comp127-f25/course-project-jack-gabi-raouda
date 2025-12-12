@@ -2,17 +2,14 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.Text;
-
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Ellipse;
-import edu.macalester.graphics.GraphicsObject;
 import edu.macalester.graphics.Image;
 import edu.macalester.graphics.Rectangle;
 import edu.macalester.graphics.ui.Button;
-
-import java.util.ArrayList;
 import edu.macalester.graphics.GraphicsText;
+import edu.macalester.graphics.GraphicsGroup;  
+
 
 
 public class FishingGame {
@@ -24,16 +21,19 @@ public class FishingGame {
     private Boat boat;
     private List<Fish> fishes = Fish.generateFish();
     private Fish caughtFish = null;
-    private boolean lineMoving = false;
-    private final int TOTAL_FISH = 15;
-    private GraphicsText scoreLabel;
     private int score = 0;
     private boolean gameOver = false;
     private boolean gameWin = false;
-    private GraphicsText messageText;
     private Button restartButton;
     private Button exitButton;
+    private Button rulesButton;
+    private Rectangle rulesBox;
     private GraphicsText rulesText;
+    private Button closeRulesButton;
+    private boolean rulesVisible = false;
+    private GraphicsGroup scoreGroup;
+    private GraphicsText scoreText;
+
 
     public CanvasWindow canvas;
     
@@ -41,21 +41,10 @@ public class FishingGame {
     public FishingGame() {
         canvas = new CanvasWindow("Fishing!", CANVAS_WIDTH, CANVAS_HEIGHT);
         drawBackground();
-        scoreLabel = new GraphicsText("Score: 0", 20, 30);
-        scoreLabel.setFontSize(24);           
-        scoreLabel.setFillColor(Color.BLACK);
-        canvas.add(scoreLabel);
-        rulesText = new GraphicsText(
-            "Rules:\n" +
-            "Shark = Game Over\n" +
-            "Whale or Squid = +100\n" +
-            "Tuna = +70\n" +
-            "Other Fish = +40",
-            CANVAS_WIDTH - 170,40
-        );
-        rulesText.setFontSize(14);
-        rulesText.setFillColor(Color.BLACK);
-        canvas.add(rulesText);
+
+        createRulesButton();
+        createScoreDisplay();
+
 
         boat = new Boat(CANVAS_WIDTH / 2 , WATER_LEVEL - 570);
         canvas.add(boat.getGraphicsObject());
@@ -98,6 +87,39 @@ public class FishingGame {
             }
         });
     }
+
+    /**
+     * Creates a score display
+     */
+    private void createScoreDisplay() {
+        scoreGroup = new GraphicsGroup(0, 0);
+
+        Rectangle scoreBox = new Rectangle(0, 0, 160, 40);
+        scoreBox.setFillColor(new Color(210, 245, 210));
+        scoreBox.setStrokeColor(new Color(180, 180, 180));
+
+        scoreText = new GraphicsText("Score: 0", 15, 26);
+        scoreText.setFontSize(16);
+
+        scoreGroup.add(scoreBox);
+        scoreGroup.add(scoreText);
+
+        scoreGroup.setPosition(
+            CANVAS_WIDTH - 160 - 20,
+            70 
+        );
+        canvas.add(scoreGroup);
+    }
+
+    /**
+    * Creates and adds the Rules button to the canvas.
+    */
+    private void createRulesButton() {
+    rulesButton = new Button("Rules");
+    rulesButton.setPosition(CANVAS_WIDTH - 100, 20);
+    canvas.add(rulesButton);
+    rulesButton.onClick(() -> toggleRules());
+    }   
 
     /**
      * Main method that calls the run method.
@@ -174,7 +196,8 @@ public class FishingGame {
      * Checks if the line has hit any fish and pulls them up to the water surface if so.
      */
     private void checkIfFishHit() {
-            if (caughtFish != null) return; 
+            if (caughtFish != null) 
+                return; 
 
             for (Fish f : fishes) {
             if (!f.isCaught() && !fishingLine.isGoingUp()) {
@@ -210,7 +233,7 @@ public class FishingGame {
                         return;
                     }
                     score += f.getValue();
-                    scoreLabel.setText("Score: " + score);
+                    scoreText.setText("Score: " + score);
 
                     canvas.remove(f.getImage());
                     toRemove.add(f);
@@ -251,12 +274,10 @@ public class FishingGame {
      */
     private void setGameOver() {
         gameOver = true;
-
-        messageText = new GraphicsText("GAME OVER!", 200, 400);
+        GraphicsText messageText = new GraphicsText("GAME OVER!", 200, 400);
         messageText.setFontSize(40);
         messageText.setFillColor(Color.RED);
         canvas.add(messageText);
-
         showButtons();
     }
 
@@ -290,20 +311,9 @@ public class FishingGame {
 
         drawBackground();
 
-        scoreLabel = new GraphicsText("Score: 0", 20, 30);
-        scoreLabel.setFontSize(24);
-        canvas.add(scoreLabel);
-        rulesText = new GraphicsText(
-            "Rules:\n" +
-            "Shark = Game Over\n" +
-            "Whale or Squid = +100\n" +
-            "Tuna = +70\n" +
-            "Other Fish = +40",
-            CANVAS_WIDTH - 170,40
-        );
-        rulesText.setFontSize(14);
-        rulesText.setFillColor(Color.BLACK);
-        canvas.add(rulesText);
+        createRulesButton();
+        createScoreDisplay();
+
 
         fishes = Fish.generateFish();
         generateAllFish();
@@ -312,6 +322,46 @@ public class FishingGame {
         canvas.add(boat.getGraphicsObject());
 
         fishingLine = new FishingLine(canvas, boat.getX(), boat.getY() + 40);
+
+    }
+
+        private void toggleRules() {
+        if (rulesVisible) {
+            canvas.remove(rulesBox);
+            canvas.remove(rulesText);
+            canvas.remove(closeRulesButton);
+            rulesVisible = false;
+            return;
+        }
+
+        rulesBox = new Rectangle(50, 150, 500, 400);
+        rulesBox.setFillColor(new Color(0, 0, 0, 180));
+        rulesBox.setStroked(false);
+
+        rulesText = new GraphicsText(
+            "WELCOME TO OUR FISHING GAME!\n\n" +
+            "Catch fish to earn points, but be careful!\n" +
+            "hooking a shark will be deadly!\n\n" +
+            "Small Fish: +40 points\n" +
+            "Tuna: +70 points\n" +
+            "Whale / Squid: +100 points\n" +
+            "Shark: GAME OVER\n\n" +
+            "SPACE — Drop the fishing line\n" +
+            "Mouse — Move the boat",    
+            130, 200
+        );
+
+        rulesText.setFontSize(20);
+        rulesText.setFillColor(Color.WHITE);
+
+        closeRulesButton = new Button("Close");
+        closeRulesButton.setPosition(260, 480);
+        closeRulesButton.onClick(() -> toggleRules());
+
+        canvas.add(rulesBox);
+        canvas.add(rulesText);
+        canvas.add(closeRulesButton);
+        rulesVisible = true;
     }
 
 }
