@@ -2,16 +2,11 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.Text;
-
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Ellipse;
-import edu.macalester.graphics.GraphicsObject;
 import edu.macalester.graphics.Image;
 import edu.macalester.graphics.Rectangle;
 import edu.macalester.graphics.ui.Button;
-
-import java.util.ArrayList;
 import edu.macalester.graphics.GraphicsText;
 
 /**

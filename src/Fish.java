@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 import edu.macalester.graphics.Image;
 import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.GraphicsObject;
 
 /**
  * Class implementing the fish in the fishing game.
