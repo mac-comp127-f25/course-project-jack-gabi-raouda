@@ -47,6 +47,7 @@ public class FishingGame {
         canvas.add(scoreLabel);
         rulesText = new GraphicsText(
             "Rules:\n" +
+            "Press SPACE to fish\n" +
             "Shark = Game Over\n" +
             "Whale or Squid = +100\n" +
             "Tuna = +70\n" +
@@ -90,8 +91,6 @@ public class FishingGame {
             }
         });
 
-
-        //Drop the line on SPACE key
         canvas.onKeyDown(event -> {
             if (event.getKey().toString().equals("SPACE")) {
                 fishingLine.dropLine();
@@ -295,6 +294,7 @@ public class FishingGame {
         canvas.add(scoreLabel);
         rulesText = new GraphicsText(
             "Rules:\n" +
+            "Press SPACE to fish\n" +
             "Shark = Game Over\n" +
             "Whale or Squid = +100\n" +
             "Tuna = +70\n" +

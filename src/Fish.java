@@ -97,7 +97,6 @@ public class Fish {
         image.setCenter(x, y);
     }
 
-
     /**
      * Generates a list of fish with random sizes, images,
      * and starting positions within the water bounds.
