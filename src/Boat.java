@@ -7,20 +7,22 @@ import edu.macalester.graphics.Point;
 import java.util.Arrays;
 
 /**
- * Represents the boat in the fishing game.
- * The boat is made up of multiple graphical components (body, mast, sail)
- * grouped together so it can move as a single object.
+ * Class implementing the boat in the fishing game.
+ * 
+ * @author Raouda Mamane Bello Boubacar 
+ * @author Jack Fang
+ * @author Gabi Palladino
+ *
+ * This class creates a GraphicsGroup to represent the boat, and manages its left and right movement, 
+ * based on mouse movement of the user.
  */
-
 public class Boat {
     private GraphicsGroup boatGroup;
     /**
      * Constructs a Boat at the given (x, y) position.
      * Initializes and adds the body, mast and sail to a GraphicsGroup.
      */
-
     public Boat(double x, double y){
-        // Body
         boatGroup = new GraphicsGroup(x, y);
         Path body = new Path(Arrays.asList(
             new Point(0, 40),  
@@ -28,18 +30,16 @@ public class Boat {
             new Point(140, 80),
             new Point(20, 80)
         ));
+        
         body.setFillColor(new Color(255, 0, 0));
         body.setStroked(false);
         boatGroup.add(body); 
 
-        // Mast
         Rectangle mast = new Rectangle(80, -50, 8, 90);
         mast.setFillColor(new Color(120, 80, 40)); 
         mast.setStroked(false);
         boatGroup.add(mast);
 
-
-        // Sail
         Path sail = new Path(Arrays.asList(
             new Point(88, -50),   
             new Point(88, 10),    
@@ -50,17 +50,14 @@ public class Boat {
         sail.setStroked(true);
         boatGroup.add(sail);
     }
-
     
      /**
      * Moves the boat horizontally based on the mouse position.
      * Ensures the boat stays within the canvas boundaries.
      */
-
     public void move(double mouseX, int canvasWidth) {
         double newX = mouseX - boatGroup.getWidth() / 2;
 
-        // Keep boat inside the screen
         if (newX < 0) newX = 0;
         if (newX + boatGroup.getWidth() > canvasWidth) {
             newX = canvasWidth - boatGroup.getWidth();
@@ -73,7 +70,6 @@ public class Boat {
      * Returns the GraphicsObject representing the entire boat.
      * Used to add the boat to the canvas.
      */
-
     public GraphicsObject getGraphicsObject(){
         return boatGroup;
     }

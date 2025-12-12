@@ -2,15 +2,17 @@ import java.util.ArrayList;
 import java.util.List;
 import edu.macalester.graphics.Image;
 import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.GraphicsObject;
-
 
 /**
- * Represents a fish in the fishing game.
- * Each fish has a position, size, image, movement behavior,
- * and a value that affects the player's score when caught.
+ * Class implementing the fish in the fishing game.
+ * 
+ * @author Raouda Mamane Bello Boubacar 
+ * @author Jack Fang
+ * @author Gabi Palladino
+ *
+ * This class stores a list of fish images and sizes, creates fish with random attributes,
+ * and manages their movement and whether they are caught.
  */
-
 public class Fish {
     private static List<Double> fishSizes = List.of(  70.0, 90.0, 110.0, 130.0, 150.0 );
 
@@ -24,11 +26,9 @@ public class Fish {
     private int value;
     private boolean deadly;
 
-
     /**
      * List of image paths used to randomly assign fish appearances.
      */
-
     public static List<String> fishImages = List.of(
         "fish_images/fish1.png",
         "fish_images/fish2.png",
@@ -43,7 +43,6 @@ public class Fish {
      * Constructs a Fish with a given position, size and image.
      * The image is resized and centered at the given coordinates.
      */
-
     public Fish(double centerX, double centerY, double size, Image image) {
         this.centerX = centerX;
         this.centerY = centerY;
@@ -74,7 +73,6 @@ public class Fish {
     public Image getImage(){
         return image;
     }
-    
 
     /**
      * Returns boolean of whether the fish is caught.
@@ -96,7 +94,6 @@ public class Fish {
     public void followLine(double x, double y) {
         image.setCenter(x, y);
     }
-
 
     /**
      * Generates a list of fish with random sizes, images,
@@ -134,7 +131,6 @@ public class Fish {
     }
         return fishList;
     }
-
 
     /**
      * Adds the fish image to the canvas.

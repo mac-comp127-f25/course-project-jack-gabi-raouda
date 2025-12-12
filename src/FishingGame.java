@@ -11,7 +11,16 @@ import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.GraphicsGroup;  
 
 
-
+/**
+ * Class implementing the fishing game.
+ * 
+ * @author Raouda Mamane Bello Boubacar 
+ * @author Jack Fang
+ * @author Gabi Palladino
+ *
+ * This class creates the main game window, manages game logic, and handles user interactions through 
+ * mouse movement, keyboard events, and pressable buttons. 
+ */
 public class FishingGame {
     private static final int CANVAS_WIDTH = 600;
     private static final int CANVAS_HEIGHT = 800;
@@ -37,7 +46,6 @@ public class FishingGame {
 
     public CanvasWindow canvas;
     
-
     public FishingGame() {
         canvas = new CanvasWindow("Fishing!", CANVAS_WIDTH, CANVAS_HEIGHT);
         drawBackground();
@@ -48,7 +56,6 @@ public class FishingGame {
 
         boat = new Boat(CANVAS_WIDTH / 2 , WATER_LEVEL - 570);
         canvas.add(boat.getGraphicsObject());
-        
         
         canvas.onMouseMove(event -> {
             if (fishingLine.dropping()) {
@@ -79,8 +86,6 @@ public class FishingGame {
             }
         });
 
-
-        //Drop the line on SPACE key
         canvas.onKeyDown(event -> {
             if (event.getKey().toString().equals("SPACE")) {
                 fishingLine.dropLine();
