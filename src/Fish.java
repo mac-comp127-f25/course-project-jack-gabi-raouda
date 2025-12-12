@@ -162,15 +162,19 @@ public class Fish {
             dy = (Math.random() * 2 - 1) * speed;
         }
     }
+
     public void setValue(int value) {
     this.value = value;
     }
+
     public void setDeadly(boolean deadly) {
         this.deadly = deadly;
     }
+
     public int getValue() {
     return value;
     }
+    
     public boolean isDeadly() {
     return deadly;
     }
