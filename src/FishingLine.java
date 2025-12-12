@@ -55,7 +55,8 @@ public class FishingLine {
     public void pullUp(){ 
     goingUp = true;
     dropping = false;
-}
+    }
+    
     /**
      * Updates the length of the fishing line based the speed and whether it is dropping or going up.
      */
