@@ -43,7 +43,6 @@ public class FishingGame {
     private GraphicsGroup scoreGroup;
     private GraphicsText scoreText;
 
-
     public CanvasWindow canvas;
     
     public FishingGame() {
