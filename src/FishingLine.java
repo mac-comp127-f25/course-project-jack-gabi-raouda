@@ -12,7 +12,6 @@ import edu.macalester.graphics.Rectangle;
  * based on the user pressing the space bar.
  */
 public class FishingLine {
-    private CanvasWindow canvas;
     private Rectangle line;
     private double x;
     private double y;
@@ -26,7 +25,6 @@ public class FishingLine {
     private static final double SPEED = 4;
 
     public FishingLine(CanvasWindow canvas, double startX, double startY) {
-        this.canvas = canvas;
         this.x = startX;
         this.y = startY;
         line = new Rectangle(x, y, LINE_WIDTH, 0);
