@@ -10,7 +10,6 @@ import edu.macalester.graphics.ui.Button;
 import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.GraphicsGroup;  
 
-
 /**
  * Class implementing the fishing game.
  * 
@@ -51,7 +50,6 @@ public class FishingGame {
 
         createRulesButton();
         createScoreDisplay();
-
 
         boat = new Boat(CANVAS_WIDTH / 2 , WATER_LEVEL - 570);
         canvas.add(boat.getGraphicsObject());
